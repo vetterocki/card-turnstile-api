@@ -1,0 +1,1 @@
+INSERT INTO turnstiles (fare_price, id) VALUES (22.5, 2);
