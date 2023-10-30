@@ -22,7 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.example.visitor.TurnstileVisitor;
+import org.example.service.visitor.TravelCardVisitor;
 import org.hibernate.Hibernate;
 
 @Getter
@@ -57,7 +57,7 @@ public abstract class TravelCard {
     this.travelCardType = travelCardType;
   }
 
-  public abstract void accept(TurnstileVisitor turnstileVisitor);
+  public abstract void accept(TravelCardVisitor travelCardVisitor);
 
   @Override
   public boolean equals(Object o) {

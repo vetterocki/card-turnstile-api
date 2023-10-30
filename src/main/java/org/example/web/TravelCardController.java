@@ -41,7 +41,7 @@ public class TravelCardController {
 
   @PostMapping
   public ResponseEntity<TravelCardViewDto> create(@RequestBody TravelCardModifyDto modifyDto) {
-    TravelCard created = travelCardService.create(travelCardMapper.toEntity(modifyDto));
+    TravelCard created = travelCardService.save(travelCardMapper.toEntity(modifyDto));
     return ResponseEntity.status(HttpStatus.CREATED).body(travelCardMapper.toDto(created));
   }
 
@@ -51,7 +51,7 @@ public class TravelCardController {
       @PathVariable Long id) {
     return ResponseEntity.of(travelCardService.findById(id)
         .map(travelCard -> travelCardMapper.partialUpdate(modifyDto, travelCard))
-        .map(travelCardService::create)
+        .map(travelCardService::save)
         .map(travelCardMapper::toDto));
   }
 }

@@ -28,11 +28,13 @@ public class DatabaseDataLoader {
           new DefaultTravelCard(TravelCardType.SCHOOL, ValidityPeriod.TEN_DAYS, TravelAmount.TEN);
       TravelCard loyaltyCard = new LoyaltyTravelCard(BigDecimal.valueOf(22.4));
 
-      repositoryByType(TravelCardRepository.class).saveAll(List.of(defaultCard, loyaltyCard));
-
       Turnstile turnstile = new Turnstile(BigDecimal.valueOf(7.5));
+      defaultCard.setLastPassed(turnstile);
+      loyaltyCard.setLastPassed(turnstile);
 
       repositoryByType(TurnstileRepository.class).save(turnstile);
+      repositoryByType(TravelCardRepository.class).saveAll(List.of(defaultCard, loyaltyCard));
+
     };
   }
 

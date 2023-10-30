@@ -21,8 +21,7 @@ import org.mapstruct.SubclassMapping;
 
 @Mapper(
     unmappedTargetPolicy = ReportingPolicy.IGNORE,
-    subclassExhaustiveStrategy = SubclassExhaustiveStrategy.RUNTIME_EXCEPTION,
-    componentModel = "spring"
+    subclassExhaustiveStrategy = SubclassExhaustiveStrategy.RUNTIME_EXCEPTION
 )
 public abstract class TravelCardMapper {
 

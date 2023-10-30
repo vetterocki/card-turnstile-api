@@ -4,6 +4,6 @@ VALUES (1, 3, 2),
 
 INSERT INTO report_interactions (report_id, description, interaction_type)
 VALUES (1, 'Error', 'DENIED'),
-       (1, '', 'SUCCESSFUL_ACCESS'),
-       (2, '', 'SUCCESSFUL_ACCESS'),
-       (2, '', 'SUCCESSFUL_ACCESS');
+       (1, 'Success', 'SUCCESSFUL_ACCESS'),
+       (2, 'Success', 'SUCCESSFUL_ACCESS'),
+       (2, 'Success', 'SUCCESSFUL_ACCESS');

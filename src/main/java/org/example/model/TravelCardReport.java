@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import lombok.Getter;
@@ -46,7 +46,7 @@ public class TravelCardReport {
   @ElementCollection
   @CollectionTable(name = "report_interactions", joinColumns = {
       @JoinColumn(name = "report_id", referencedColumnName = "id")})
-  private final List<Interaction> interactions = new ArrayList<>();
+  private final List<Interaction> interactions = new LinkedList<>();
 
   public TravelCardReport(TravelCard travelCard, Turnstile turnstile) {
     this.travelCard = travelCard;

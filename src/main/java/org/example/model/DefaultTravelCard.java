@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.example.visitor.TurnstileVisitor;
+import org.example.service.visitor.TravelCardVisitor;
 import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -44,8 +44,8 @@ public class DefaultTravelCard extends TravelCard {
   }
 
   @Override
-  public void accept(TurnstileVisitor turnstileVisitor) {
-    turnstileVisitor.visitDefault(this);
+  public void accept(TravelCardVisitor travelCardVisitor) {
+    travelCardVisitor.visitDefault(this);
   }
 
   @Override

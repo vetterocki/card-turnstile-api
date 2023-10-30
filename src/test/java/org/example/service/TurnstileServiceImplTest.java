@@ -1,16 +1,22 @@
 package org.example.service;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.example.JpaRepositoryUtils.findById;
 
+import java.math.BigDecimal;
 import org.example.data.TravelCardReportRepository;
 import org.example.data.TravelCardRepository;
 import org.example.data.TurnstileRepository;
 import org.example.exception.EntityNotFoundException;
 import org.example.model.DefaultTravelCard;
 import org.example.model.Interaction;
+import org.example.model.LoyaltyTravelCard;
+import org.example.model.TravelAmount;
+import org.example.model.TravelCard;
+import org.example.model.TravelCardType;
+import org.example.model.ValidityPeriod;
+import org.example.service.impl.TurnstileServiceImpl;
 import org.example.testcontainer.TestContainerConfiguration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +27,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 @Import({TestContainerConfiguration.class})
 @SpringBootTest
-class TurnstileServiceTest {
+class TurnstileServiceImplTest {
   @Autowired
   private TurnstileService turnstileService;
 
@@ -43,10 +49,9 @@ class TurnstileServiceTest {
 
   @Sql({"/sql/turnstiles.sql", "/sql/travel-cards.sql"})
   @Test
-  void testTurnstilePassing() {
+  void testSuccessfulTurnstilePassing() {
     var travelCard = (DefaultTravelCard) findById(3L, travelCardRepository);
     var turnstile = findById(2L, turnstileRepository);
-
     var successfulInteraction = turnstileService.passTurnstile(3L, 2L);
 
     assertThat(successfulInteraction).isEqualTo(Interaction.SUCCESS);
@@ -56,18 +61,21 @@ class TurnstileServiceTest {
           assertThat(travelCardReport.getTurnstile()).isEqualTo(turnstile);
           assertThat(travelCardReport.getTravelCard()).isEqualTo(travelCard);
         });
+  }
 
+  @Sql({"/sql/turnstiles.sql"})
+  @Test
+  void testDeniedTurnstilePassing() {
+    var travelCard = new DefaultTravelCard(
+        TravelCardType.SCHOOL, ValidityPeriod.TEN_DAYS, TravelAmount.TEN
+    );
     travelCard.setTravelsLeft(0);
-    travelCardRepository.save(travelCard);
+    var created = travelCardRepository.save(travelCard);
 
-    var deniedInteraction = turnstileService.passTurnstile(3L, 2L);
-    assertThat(deniedInteraction).satisfies(interaction -> {
-      assertThat(interaction.getDescription()).isEqualTo(
-          "No travels left on travel card with id " + travelCard.getId());
-    });
-
+    var deniedInteraction = turnstileService.passTurnstile(created.getId(), 2L);
+    assertThat(deniedInteraction).matches(interaction -> interaction.getDescription().equals(
+        "No travels left on travel card with id " + travelCard.getId()));
     assertThatThrownBy(() -> turnstileService.passTurnstile(10L, 10L))
         .isInstanceOf(EntityNotFoundException.class);
-
   }
 }

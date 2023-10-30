@@ -1,5 +1,7 @@
 package org.example.model;
 
+import static org.example.model.Interaction.InteractionType.SUCCESSFUL_ACCESS;
+
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,7 +25,9 @@ public class Interaction {
 
   private final LocalDateTime time = LocalDateTime.now();
 
-  public static final Interaction SUCCESS = new Interaction(InteractionType.SUCCESSFUL_ACCESS, "");
+  public static final Interaction SUCCESS = new Interaction(
+      SUCCESSFUL_ACCESS, successfulDescription()
+  );
 
   public static Interaction deniedFrom(String description) {
     return new Interaction(InteractionType.DENIED, description);
@@ -35,6 +39,17 @@ public class Interaction {
   }
 
   public enum InteractionType {
-    SUCCESSFUL_ACCESS, DENIED
+    SUCCESSFUL_ACCESS,
+    DENIED
   }
+
+  public boolean isSuccessful() {
+    return interactionType.equals(SUCCESSFUL_ACCESS);
+  }
+
+  private static String successfulDescription() {
+    String success = SUCCESSFUL_ACCESS.name().replace("_", "");
+    return success.charAt(0) + success.substring(1).toLowerCase();
+  }
+
 }

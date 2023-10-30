@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.example.visitor.TurnstileVisitor;
+import org.example.service.visitor.TravelCardVisitor;
 import org.hibernate.Hibernate;
 
 @Getter
@@ -28,8 +28,8 @@ public class LoyaltyTravelCard extends TravelCard {
   }
 
   @Override
-  public void accept(TurnstileVisitor turnstileVisitor) {
-    turnstileVisitor.visitLoyalty(this);
+  public void accept(TravelCardVisitor travelCardVisitor) {
+    travelCardVisitor.visitLoyalty(this);
   }
 
   @Override
