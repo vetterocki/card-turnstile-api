@@ -13,6 +13,6 @@ import org.example.model.TravelCardType;
 })
 @Data
 public abstract class TravelCardModifyDto {
-  @NotNull
+  @NotNull(message = "Specify travel card type")
   private TravelCardType type;
 }
