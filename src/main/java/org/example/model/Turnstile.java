@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +19,7 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @Entity
@@ -32,7 +32,6 @@ public class Turnstile {
       sequenceName = "turnstile_sequence",
       allocationSize = 20)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turn_seq")
-  @Setter(AccessLevel.PUBLIC)
   private Long id;
 
   private BigDecimal farePrice;

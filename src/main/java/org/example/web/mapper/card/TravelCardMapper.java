@@ -25,7 +25,6 @@ import org.mapstruct.SubclassMapping;
 )
 public abstract class TravelCardMapper {
 
-  @Mapping(target = "travelCardType", source = "type")
   @SubclassMapping(source = DefaultTravelCardModifyDto.class, target = DefaultTravelCard.class)
   @SubclassMapping(source = LoyaltyTravelCardModifyDto.class, target = LoyaltyTravelCard.class)
   public abstract TravelCard toEntity(TravelCardModifyDto dto);
