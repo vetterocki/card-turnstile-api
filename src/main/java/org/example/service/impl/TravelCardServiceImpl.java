@@ -31,4 +31,9 @@ public class TravelCardServiceImpl implements TravelCardService {
     return travelCardRepository.findAll();
   }
 
+  @Override
+  public void deleteById(Long id) {
+    travelCardRepository.deleteById(id);
+  }
+
 }

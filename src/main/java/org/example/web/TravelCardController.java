@@ -12,6 +12,7 @@ import org.example.web.dto.card.TravelCardViewDto;
 import org.example.web.mapper.card.TravelCardMapperDecorator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class TravelCardController {
   }
 
   @PostMapping
-  public ResponseEntity<TravelCardViewDto> create(@RequestBody TravelCardModifyDto modifyDto) {
+  public ResponseEntity<TravelCardViewDto> create(@Valid @RequestBody TravelCardModifyDto modifyDto) {
     TravelCard created = travelCardService.save(travelCardMapper.toEntity(modifyDto));
     return ResponseEntity.status(HttpStatus.CREATED).body(travelCardMapper.toDto(created));
   }
@@ -53,5 +54,11 @@ public class TravelCardController {
         .map(travelCard -> travelCardMapper.partialUpdate(modifyDto, travelCard))
         .map(travelCardService::save)
         .map(travelCardMapper::toDto));
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    travelCardService.deleteById(id);
+    return ResponseEntity.noContent().build();
   }
 }

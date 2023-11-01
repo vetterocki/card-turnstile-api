@@ -48,7 +48,7 @@ public class Interaction {
   }
 
   private static String successfulDescription() {
-    String success = SUCCESSFUL_ACCESS.name().replace("_", "");
+    String success = SUCCESSFUL_ACCESS.name().replace("_", " ");
     return success.charAt(0) + success.substring(1).toLowerCase();
   }
 

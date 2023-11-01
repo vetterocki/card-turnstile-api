@@ -1,5 +1,6 @@
 package org.example.web;
 
+import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,9 +76,20 @@ public class TurnstileController {
 
   @PatchMapping("/{id}/pass/{card-id}")
   public ResponseEntity<InteractionViewDto> passTurnstile(@PathVariable Long id,
-                                                          @PathVariable(name = "card-id") Long cardId) {
+                                                          @PathVariable(name = "card-id")
+                                                          Long cardId) {
     Interaction interaction = turnstileService.passTurnstile(cardId, id);
     return ResponseEntity.ok(interactionMapper.toDto(interaction));
+  }
+
+  @PatchMapping("/{id}")
+  public ResponseEntity<TurnstileViewDto> partialUpdate(
+      @PathVariable Long id,
+      @Valid @RequestBody TurnstileModifyDto modifyDto) {
+    return ResponseEntity.of(turnstileService.findById(id)
+        .map(turnstile -> turnstileMapper.partialUpdate(modifyDto, turnstile))
+        .map(turnstileService::create)
+        .map(turnstileMapper::toDto));
   }
 
   @DeleteMapping("/{id}")

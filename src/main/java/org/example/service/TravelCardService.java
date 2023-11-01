@@ -10,4 +10,6 @@ public interface TravelCardService {
   Optional<TravelCard> findById(Long id);
 
   List<TravelCard> findAll();
+
+  void deleteById(Long id);
 }

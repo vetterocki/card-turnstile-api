@@ -24,5 +24,5 @@ public interface TurnstileMapper {
 
   @InheritConfiguration(name = "toEntity")
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-  Turnstile partialDefault(TurnstileModifyDto dto, @MappingTarget Turnstile turnstile);
+  Turnstile partialUpdate(TurnstileModifyDto dto, @MappingTarget Turnstile turnstile);
 }
