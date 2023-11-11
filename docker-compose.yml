@@ -1,0 +1,47 @@
+version: '3.8'
+
+x-timezone-envs: &env
+  TZ: Europe/Kiev
+  PGTZ: Europe/Kiev
+
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    container_name: turnstile_database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - spring-postgres
+
+  api:
+    depends_on:
+      - postgres
+    container_name: turnstile_backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      <<: *env
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/database
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      JWT_SECRET: HwvCZVTfA49RRuIBrQGF4YxX5aw3J3zN1xDFzh
+      JWT_ACCESS_EXPIRATION_SECONDS: 900
+      JWT_REFRESH_EXPIRATION_DAYS: 14
+    ports:
+      - '8080:8080'
+    networks:
+      - spring-postgres
+
+
+volumes:
+  postgres-data:
+networks:
+  spring-postgres:
+    driver: bridge
