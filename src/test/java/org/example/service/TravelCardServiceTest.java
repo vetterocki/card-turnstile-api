@@ -1,15 +1,14 @@
 package org.example.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.example.data.TravelCardRepository;
 import org.example.data.TurnstileRepository;
-import org.example.model.DefaultTravelCard;
-import org.example.model.TravelAmount;
-import org.example.model.TravelCard;
-import org.example.model.TravelCardType;
-import org.example.model.ValidityPeriod;
+import org.example.model.card.DefaultTravelCard;
+import org.example.model.card.TravelAmount;
+import org.example.model.card.TravelCard;
+import org.example.model.card.TravelCardType;
+import org.example.model.card.ValidityPeriod;
 import org.example.testcontainer.TestContainerConfiguration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

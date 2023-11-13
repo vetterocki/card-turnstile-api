@@ -1,8 +1,8 @@
 package org.example.service.handler;
 
-import org.example.model.DefaultTravelCard;
 import org.example.model.Interaction;
-import org.example.model.TravelCard;
+import org.example.model.card.DefaultTravelCard;
+import org.example.model.card.TravelCard;
 import org.springframework.stereotype.Component;
 
 

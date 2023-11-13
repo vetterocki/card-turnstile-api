@@ -1,11 +1,11 @@
-package org.example.web;
+package org.example.web.controller;
 
 
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.example.model.TravelCard;
+import org.example.model.card.TravelCard;
 import org.example.service.TravelCardService;
 import org.example.web.dto.card.TravelCardModifyDto;
 import org.example.web.dto.card.TravelCardViewDto;

@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import org.example.model.Interaction;
-import org.example.model.TravelCard;
+import org.example.model.card.TravelCard;
 
 @EqualsAndHashCode
 @ToString

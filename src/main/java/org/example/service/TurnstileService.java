@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.example.model.Interaction;
 import org.example.model.TravelCardReport;
-import org.example.model.TravelCardType;
 import org.example.model.Turnstile;
+import org.example.model.card.TravelCardType;
 
 public interface TurnstileService {
   Turnstile create(Turnstile turnstile);

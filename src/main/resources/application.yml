@@ -1,8 +1,22 @@
 spring:
+  application:
+    name: turnstile-api
   datasource:
-    url: jdbc:postgresql://localhost:5432/local
-    username: local
-    password: local
+    url: jdbc:postgresql://localhost:5432/database
+    username: postgres
+    password: password
   jpa:
     hibernate:
       ddl-auto: create
+
+jwt:
+  secret:
+    wow-secret-wow
+  access:
+    expiration:
+      seconds:
+        900
+  refresh:
+    expiration:
+      days:
+        1

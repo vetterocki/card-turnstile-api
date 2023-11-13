@@ -1,4 +1,4 @@
-package org.example.web;
+package org.example.web.controller;
 
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Interaction;
-import org.example.model.TravelCardType;
 import org.example.model.Turnstile;
+import org.example.model.card.TravelCardType;
 import org.example.service.TurnstileService;
 import org.example.web.dto.InteractionViewDto;
 import org.example.web.dto.TravelCardReportViewDto;
@@ -97,6 +97,4 @@ public class TurnstileController {
     turnstileService.deleteById(id);
     return ResponseEntity.noContent().build();
   }
-
-
 }

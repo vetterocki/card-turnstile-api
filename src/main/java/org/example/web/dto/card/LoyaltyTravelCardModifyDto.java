@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.model.TravelCardType;
+import org.example.model.card.TravelCardType;
 
 
 @JsonTypeName("loyalty")

@@ -1,7 +1,7 @@
 package org.example.web.dto.card;
 
 import lombok.Data;
-import org.example.model.TravelCardType;
+import org.example.model.card.TravelCardType;
 
 @Data
 public abstract class TravelCardViewDto  {

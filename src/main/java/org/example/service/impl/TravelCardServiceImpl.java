@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.example.data.TravelCardRepository;
-import org.example.model.TravelCard;
+import org.example.model.card.TravelCard;
+import org.example.model.user.User;
 import org.example.service.TravelCardService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,11 @@ public class TravelCardServiceImpl implements TravelCardService {
   @Override
   public void deleteById(Long id) {
     travelCardRepository.deleteById(id);
+  }
+
+  @Override
+  public List<TravelCard> findAllTravelCardsByUser(User user) {
+    return travelCardRepository.findAllByUser(user);
   }
 
 }
