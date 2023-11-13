@@ -9,12 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;
-import org.example.data.TravelCardReportRepository;
 import org.example.data.TravelCardRepository;
 import org.example.data.TurnstileRepository;
-import org.example.model.DefaultTravelCard;
 import org.example.model.Interaction;
-import org.example.model.LoyaltyTravelCard;
+import org.example.model.card.DefaultTravelCard;
+import org.example.model.card.LoyaltyTravelCard;
 import org.example.testcontainer.TestContainerConfiguration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +26,6 @@ import org.springframework.test.context.jdbc.Sql;
 @Import({TestContainerConfiguration.class})
 @SpringBootTest
 class InteractionGeneratorTest {
-  @Autowired
-  private TravelCardReportRepository travelCardReportRepository;
 
   @Autowired
   private TravelCardRepository travelCardRepository;

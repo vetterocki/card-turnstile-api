@@ -3,7 +3,7 @@ package org.example.service.impl;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Interaction;
-import org.example.model.TravelCard;
+import org.example.model.card.TravelCard;
 import org.example.service.InteractionGenerator;
 import org.example.service.handler.InteractionDescriptionHandler;
 import org.springframework.stereotype.Service;

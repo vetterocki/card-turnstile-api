@@ -2,9 +2,9 @@ package org.example.service.visitor;
 
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
-import org.example.model.DefaultTravelCard;
-import org.example.model.LoyaltyTravelCard;
-import org.example.model.TravelCard;
+import org.example.model.card.DefaultTravelCard;
+import org.example.model.card.LoyaltyTravelCard;
+import org.example.model.card.TravelCard;
 import org.example.service.TravelCardService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

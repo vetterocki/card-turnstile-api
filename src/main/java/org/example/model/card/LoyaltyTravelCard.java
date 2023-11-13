@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.card;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -1,9 +1,10 @@
-package org.example.model;
+package org.example.model.card;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +23,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.example.model.TravelCardReport;
+import org.example.model.Turnstile;
+import org.example.model.user.User;
 import org.example.service.visitor.TravelCardVisitor;
 import org.hibernate.Hibernate;
 
@@ -52,6 +56,10 @@ public abstract class TravelCard {
   @OneToMany(mappedBy = "travelCard", cascade = CascadeType.REMOVE)
   @ToString.Exclude
   private final List<TravelCardReport> reports = new ArrayList<>();
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User user;
 
   protected TravelCard(TravelCardType travelCardType) {
     this.travelCardType = travelCardType;

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.card;
 
 import java.time.LocalDateTime;
 

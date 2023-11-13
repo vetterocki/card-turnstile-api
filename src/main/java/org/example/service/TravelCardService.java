@@ -2,7 +2,8 @@ package org.example.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.example.model.TravelCard;
+import org.example.model.card.TravelCard;
+import org.example.model.user.User;
 
 public interface TravelCardService {
   TravelCard save(TravelCard travelCard);
@@ -12,4 +13,6 @@ public interface TravelCardService {
   List<TravelCard> findAll();
 
   void deleteById(Long id);
+
+  List<TravelCard> findAllTravelCardsByUser(User user);
 }

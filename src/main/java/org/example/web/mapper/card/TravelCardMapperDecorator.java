@@ -1,9 +1,9 @@
 package org.example.web.mapper.card;
 
 import lombok.RequiredArgsConstructor;
-import org.example.model.DefaultTravelCard;
-import org.example.model.LoyaltyTravelCard;
-import org.example.model.TravelCard;
+import org.example.model.card.DefaultTravelCard;
+import org.example.model.card.LoyaltyTravelCard;
+import org.example.model.card.TravelCard;
 import org.example.web.dto.card.DefaultTravelCardModifyDto;
 import org.example.web.dto.card.LoyaltyTravelCardModifyDto;
 import org.example.web.dto.card.TravelCardModifyDto;

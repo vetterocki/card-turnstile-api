@@ -17,6 +17,7 @@ import java.util.Objects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.example.model.card.TravelCard;
 import org.hibernate.Hibernate;
 
 @ToString

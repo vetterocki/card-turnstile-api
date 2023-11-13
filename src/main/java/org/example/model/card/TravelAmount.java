@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.card;
 
 public enum TravelAmount {
   FIVE(5), TEN(10);
