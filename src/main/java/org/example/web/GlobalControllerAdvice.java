@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.example.exception.EntityNotFoundException;
+import org.example.exception.InvalidPasswordException;
+import org.example.exception.InvalidTokenTypeException;
+import org.example.exception.UserAlreadyExistsException;
 import org.example.web.dto.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,12 @@ public class GlobalControllerAdvice {
   public ResponseEntity<ExceptionResponse> handleNotFound(RuntimeException exception) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(exceptionResponse(exception.getMessage()));
+  }
+
+  @ExceptionHandler({InvalidPasswordException.class, InvalidTokenTypeException.class,
+      UserAlreadyExistsException.class})
+  public ResponseEntity<ExceptionResponse> handleBadRequest(RuntimeException exception) {
+    return ResponseEntity.badRequest().body(exceptionResponse(exception.getMessage()));
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

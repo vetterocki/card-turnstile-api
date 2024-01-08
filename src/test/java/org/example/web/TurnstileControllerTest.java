@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import java.util.stream.Stream;
 import org.example.data.TravelCardRepository;
 import org.example.data.TurnstileRepository;
+import org.example.data.UserRepository;
 import org.example.testcontainer.TestContainerConfiguration;
 import org.example.web.dto.TurnstileModifyDto;
 import org.junit.jupiter.api.AfterEach;
@@ -38,6 +39,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 @AutoConfigureMockMvc
 @Import(TestContainerConfiguration.class)
+@WithAdminUser
 @SpringBootTest
 class TurnstileControllerTest {
   private final String url = "turnstiles";
@@ -54,10 +56,14 @@ class TurnstileControllerTest {
   @Autowired
   private TurnstileRepository turnstileRepository;
 
+  @Autowired
+  private UserRepository userRepository;
+
   @AfterEach
   public void deleteAll() {
     travelCardRepository.deleteAll();
     turnstileRepository.deleteAll();
+    userRepository.deleteAll();
   }
 
   @Test
@@ -148,7 +154,6 @@ class TurnstileControllerTest {
         Arguments.of(13142L, status().isNoContent())
     );
   }
-
 
 
 }

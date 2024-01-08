@@ -23,7 +23,7 @@ public enum Role {
     return Stream.concat(
         Stream.of(new SimpleGrantedAuthority("ROLE_" + this.name())),
         this.permissions.stream()
-            .map(Permission::getDescription)
+            .map(Permission::name)
             .map(SimpleGrantedAuthority::new)
     ).toList();
   }

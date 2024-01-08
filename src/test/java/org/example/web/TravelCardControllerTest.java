@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.stream.Stream;
 import org.example.data.TravelCardRepository;
 import org.example.data.TurnstileRepository;
+import org.example.data.UserRepository;
 import org.example.model.card.TravelAmount;
 import org.example.model.card.TravelCardType;
 import org.example.model.card.ValidityPeriod;
@@ -39,6 +40,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 @AutoConfigureMockMvc
 @Import(TestContainerConfiguration.class)
+@WithAdminUser
 @SpringBootTest
 class TravelCardControllerTest {
   private final String url = "travel-cards";
@@ -55,15 +57,19 @@ class TravelCardControllerTest {
   @Autowired
   private TurnstileRepository turnstileRepository;
 
+  @Autowired
+  private UserRepository userRepository;
   @AfterEach
   public void deleteAll() {
     travelCardRepository.deleteAll();
     turnstileRepository.deleteAll();
+    userRepository.deleteAll();
   }
 
   @Test
   @Sql({"/sql/turnstiles.sql", "/sql/travel-cards.sql"})
   void testFindingAll() throws Exception {
+    System.out.println(userRepository.findAll());
     mockMvc.perform(get("/{url}", url))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(2)));

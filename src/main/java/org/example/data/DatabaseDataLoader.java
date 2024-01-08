@@ -10,16 +10,21 @@ import org.example.model.card.TravelAmount;
 import org.example.model.card.TravelCard;
 import org.example.model.card.TravelCardType;
 import org.example.model.card.ValidityPeriod;
+import org.example.model.user.Role;
+import org.example.model.user.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RequiredArgsConstructor
 @Configuration
+@Profile("!test")
 public class DatabaseDataLoader {
-
   private final List<JpaRepository<?, ?>> jpaRepositories;
+  private final PasswordEncoder passwordEncoder;
 
   @Bean
   CommandLineRunner commandLineRunner() {
@@ -35,6 +40,11 @@ public class DatabaseDataLoader {
       repositoryByType(TurnstileRepository.class).save(turnstile);
       repositoryByType(TravelCardRepository.class).saveAll(List.of(defaultCard, loyaltyCard));
 
+      User user = new User();
+      user.setEmail("admin@email.com");
+      user.setPassword(passwordEncoder.encode("123"));
+      user.setRole(Role.ADMIN);
+      repositoryByType(UserRepository.class).save(user);
     };
   }
 

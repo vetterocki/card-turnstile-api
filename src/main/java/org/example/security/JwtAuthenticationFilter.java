@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             });
       } catch (RuntimeException exception) {
         handlerExceptionResolver.resolveException(request, response, null, exception);
-        log.error("custom" + exception.getMessage());
+        log.error("Exception occurred in in filter", exception);
       }
       filterChain.doFilter(request, response);
     }
