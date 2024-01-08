@@ -12,6 +12,7 @@ import org.example.service.UserService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor(onConstructor_ = {@Lazy})
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService {
   private final UserServiceImpl self;
 
   @Override
-  @Transactional
+  @Transactional(propagation = Propagation.MANDATORY)
   public User create(User user) {
     if (!userRepository.existsByEmail(user.getEmail())) {
       user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -52,16 +53,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<User> findByEmail(String email) {
     return userRepository.findByEmail(email);
-  }
-
-  @Override
-  public boolean existsByEmail(String email) {
-    return userRepository.existsByEmail(email);
-  }
-
-  @Override
-  public List<User> findAll() {
-    return userRepository.findAll();
   }
 
   @Override
